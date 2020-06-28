@@ -2,31 +2,239 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Galil DMC",
 	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
+		{"include": "#comments"},
+		{"include": "#deliminators"},
+		{"include": "#math"},
+		{"include": "#IO"},
+		{"include": "#strings"},
+		{"include": "#flow"},
+		{"include": "#operands"},
+		{"include": "#commands"},
+		{"include": "#numerals"},
+		{"include": "#labels"},
+		{"include": "#variables"},
+		{"include": "#other"}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.dmc",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.dmc",
+					"comment": "Inline comment, downloaded to controller",
+					"match": "\\'.*$"
+				},
+				{
+					"name": "comment.dmc",
+					"comment": "Inline comment, not downloaded to controller",
+					"match": "^REM.*$"
+				},
+				{
+					"name": "comment.line.double-slash",
+					"comment": "Inline C-style comments",
+					"match": "//.*$"
+				},
+				{
+					"comment": "## Comment",
+					"match": "##\\s.*$",
+					"name": "markup.heading.galildmc"
+				},
+				{
+					"comment": "## Preprocessor Directive",
+					"match": "##(include|option)\\s",
+					"name": "entity.name.function.galildmc"
+				},
+				{
+					"comment": "Invalid",
+					"match": "##",
+					"name": "invalid.galildmc"
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.dmc",
 			"begin": "\"",
-			"end": "\"",
+			"end": "\""
+		},
+		"flow": {
 			"patterns": [
 				{
-					"name": "constant.character.escape.dmc",
-					"match": "\\\\."
+					"comment": "Flow Control Commands",
+					"match": "\\b(ELSE|ENDIF|IF)\\b",
+					"name": "keyword.control.galildmc"
+				}
+			]
+		},
+		"operands": {
+			"patterns": [
+				{
+					"comment": "General Operands",
+					"match": "_[A-Z]{2}",
+					"name": "storage.function.galildmc"
+				},
+				{
+					"comment": "TIME Operand",
+					"match": "TIME",
+					"name": "storage.function.galildmc"
+				}
+			]
+		},
+		"deliminators": {
+			"patterns": [
+				{
+					"comment": "List Separator",
+					"match": ",",
+					"name": "string.quoted.other.galildmc"
+				},
+				{
+					"comment": "Command Delimiter",
+					"match": ";",
+					"name": "entity.name.function.endline.galildmc"
+				}
+			]
+		},
+		"math": {
+			"patterns": [
+				{
+					"comment": "Trig Functions",
+					"match": "@(ACOS|ASIN|ATAN|COS|SIN|TAN)",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Numeric Functions",
+					"match": "@(ABS|COM|FLOT|FRAC|INT|REAL|RND|SQR)",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Operators",
+					"match": "[$%&\\|*\\/+\\-]",
+					"name": "keyword.operators.galildmc"
+				},
+				{
+					"comment": "Comparators",
+					"match": "[<>=]",
+					"name": "keyword.operators.galildmc"
+				}
+			]
+		},
+		"IO": {
+			"patterns": [
+				{
+					"comment": "IO Functions",
+					"match": "@(AN|AO|IN|OUT)",
+					"name": "keyword.control.galildmc"
+				}
+			]
+		},
+		"commands": {
+			"patterns": [
+				{
+					"comment": "Commands A-B",
+					"match": "(A[ABCDEFGILMOPQRSTUVZ]|B[ABCDGIKLMNPRTVWZ])",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Commands E-F",
+					"match": "(E[ABCDGHIKMNOPQRSTUWXYZ]|F[AEILQV])",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Commands G-J",
+					"match": "(G[ADMR]|H[MSVX]|I[ADFHIKLOPQT]|J[GPS])",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Commands K-M",
+					"match": "(K[DIPS]|L[ACDEILMSVZ]|M[ABCDEFGHIORSTUVW])",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Commands M-P",
+					"match": "(N[BFOZ]|O[BCEFP]|P[ACFLMRSTVW])",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Commands P (Serial Ports)",
+					"match": "(P((1CD)|(1CH)|(1NM)|(1ST)))",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Commands Q-S",
+					"match": "(Q[DEHRSUZ]|R[ACDEILOPRSTY]|S[ABCDEGHLMPRT])",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Commands T-V",
+					"match": "(T[ABCDEHIKLMNPRSTVWZ]|U[IL]|V[ADEFMPRSTV])",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Commands W-Z",
+					"match": "(W[CEHT]|X[Q]|Y[ABCRS]|Z[ACDS])",
+					"name": "keyword.control.galildmc"
+				}
+			]
+		},
+		"numerals": {
+			"patterns": [
+				{
+					"comment": "Numeric Values, Invalid",
+					"match": "[0-9]{1,}[A-Za-z_]+",
+					"name": "invalid.galildmc"
+				},
+				{
+					"comment": "Numeric Values, Valid",
+					"match": "\\d+",
+					"name": "constant.numeric.galildmc"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"comment": "Variable Names, Invalid",
+					"match": "[A-Za-z]{1}[A-Za-z0-9_]{8,}",
+					"name": "invalid.galildmc"
+				},
+				{
+					"comment": "Variable Names, Valid",
+					"match": "[A-Za-z]{1}[A-Za-z0-9_]{,7}",
+					"name": "variable.parameter.galildmc"
+				}
+			]
+		},
+		"labels": {
+			"patterns": [
+				{
+					"comment": "Labels, Invalid",
+					"match": "#[A-Za-z]{1}[A-Za-z0-9_]{7,}",
+					"name": "invalid.galildmc"
+				},
+				{
+					"comment": "Labels, Valid",
+					"match": "#[A-Za-z]{1}[A-Za-z0-9_]{,6}",
+					"name": "entity.name.tag.galildmc"
+				}
+			]
+		},
+		"other": {
+			"patterns": [
+				{
+					"comment": "JS subroutine stack variable",
+					"match": "\\^[a-h]{1}",
+					"name": "variable.parameter.galildmc"
+				},
+				{
+					"comment": "Special Built in Functions",
+					"match": "(\\^L\\^K|\\^R\\^S|\\^R\\^V)",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Axis Designator",
+					"match": "~[a-h]",
+					"name": "storage.function.galildmc"
 				}
 			]
 		}
 	},
-	"scopeName": ""
+	"scopeName": "source.dmc"
 }

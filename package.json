@@ -18,7 +18,7 @@
         }],
         "grammars": [{
             "language": "dmc",
-            "scopeName": "",
+            "scopeName": "source.dmc",
             "path": "./syntaxes/dmc.tmLanguage.json"
         }]
     }

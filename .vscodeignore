@@ -1,4 +1,8 @@
+# Default itmes from Yeomen
 .vscode/**
 .vscode-test/**
 .gitignore
 vsc-extension-quickstart.md
+
+# Addition items
+example.png

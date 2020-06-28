@@ -1,0 +1,25 @@
+{
+    "name": "galil-dmc-syntax",
+    "displayName": "Galil DMC Syntax",
+    "description": "Syntax highlighting for Galil DMC Code files",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.46.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "dmc",
+            "aliases": ["Galil DMC", "dmc"],
+            "extensions": [".dmc"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "dmc",
+            "scopeName": "",
+            "path": "./syntaxes/dmc.tmLanguage.json"
+        }]
+    }
+}

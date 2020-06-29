@@ -2,7 +2,9 @@
     "name": "galil-dmc-syntax",
     "displayName": "Galil DMC Syntax",
     "description": "Syntax highlighting for Galil DMC Code files",
-    "version": "0.0.1",
+    "version": "0.0.2",
+    "publisher": "JoeyV120",
+    "repository": "https://github.com/joeyv120/galil-dmc-syntax",
     "engines": {
         "vscode": "^1.46.0"
     },

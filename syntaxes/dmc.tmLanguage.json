@@ -19,29 +19,29 @@
 		"comments": {
 			"patterns": [
 				{
-					"name": "comment.dmc",
 					"comment": "Inline comment, downloaded to controller",
-					"match": "\\'.*$"
+					"match": "\\'.*$",
+					"name": "comment.dmc"
 				},
 				{
-					"name": "comment.dmc",
-					"comment": "Inline comment, not downloaded to controller",
-					"match": "^REM.*$"
+					"comment": "Line comment, not downloaded to controller",
+					"match": "^REM.*$",
+					"name": "comment.line.dmc"
 				},
 				{
-					"name": "comment.line.double-slash",
 					"comment": "Inline C-style comments",
-					"match": "//.*$"
+					"match": "//.*$",
+					"name": "comment.line.double-slash"
 				},
 				{
 					"comment": "## Comment",
-					"match": "##\\s.*$",
+					"match": "^##\\s.*$",
 					"name": "markup.heading.galildmc"
 				},
 				{
 					"comment": "## Preprocessor Directive",
-					"match": "##(include|option)\\s",
-					"name": "entity.name.function.galildmc"
+					"match": "^##(include|option)\\s",
+					"name": "support.function.galildmc"
 				},
 				{
 					"comment": "Invalid",
@@ -73,7 +73,7 @@
 				},
 				{
 					"comment": "TIME Operand",
-					"match": "TIME",
+					"match": "\\bTIME\\b",
 					"name": "storage.function.galildmc"
 				}
 			]
@@ -97,12 +97,12 @@
 				{
 					"comment": "Trig Functions",
 					"match": "@(ACOS|ASIN|ATAN|COS|SIN|TAN)",
-					"name": "keyword.control.galildmc"
+					"name": "support.function.galildmc"
 				},
 				{
 					"comment": "Numeric Functions",
 					"match": "@(ABS|COM|FLOT|FRAC|INT|REAL|RND|SQR)",
-					"name": "keyword.control.galildmc"
+					"name": "support.function.galildmc"
 				},
 				{
 					"comment": "Operators",
@@ -121,7 +121,7 @@
 				{
 					"comment": "IO Functions",
 					"match": "@(AN|AO|IN|OUT)",
-					"name": "keyword.control.galildmc"
+					"name": "storage.function.galildmc"
 				}
 			]
 		},
@@ -130,6 +130,11 @@
 				{
 					"comment": "Commands A-B",
 					"match": "(A[ABCDEFGILMOPQRSTUVZ]|B[ABCDGIKLMNPRTVWZ])",
+					"name": "keyword.control.galildmc"
+				},
+				{
+					"comment": "Commands C-D",
+					"match": "(C[ABCDEFILMNORSW]|D[ABCEHLMPQRTVY])",
 					"name": "keyword.control.galildmc"
 				},
 				{
@@ -198,7 +203,7 @@
 				{
 					"comment": "Variable Names, Valid",
 					"match": "[A-Za-z]{1}[A-Za-z0-9_]{,7}",
-					"name": "variable.parameter.galildmc"
+					"name": "variable.galildmc"
 				}
 			]
 		},
@@ -226,12 +231,12 @@
 				{
 					"comment": "Special Built in Functions",
 					"match": "(\\^L\\^K|\\^R\\^S|\\^R\\^V)",
-					"name": "keyword.control.galildmc"
+					"name": "support.function.galildmc"
 				},
 				{
 					"comment": "Axis Designator",
 					"match": "~[a-h]",
-					"name": "storage.function.galildmc"
+					"name": "storage.modifier.galildmc"
 				}
 			]
 		}

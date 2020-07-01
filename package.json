@@ -4,7 +4,7 @@
     "description": "Syntax highlighting for Galil DMC Code files",
     "version": "0.1.1",
     "publisher": "JoeyV120",
-    "icon": "./galil-dmc-syntax.png",
+    "icon": "galil-dmc-syntax.png",
     "galleryBanner": {
         "color": "#1C2A87",
         "theme": "dark"

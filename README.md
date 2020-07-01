@@ -3,11 +3,9 @@ This is Galil Motion Control DMC language syntax highlighting for Microsoft Visu
 
 ![Example Image](./example.png)
 
-## Installation
+### 0.1.0
 
-## Known Issues
-
-## Release Notes
+* Published to VSCode Marketplace
 
 ### 0.0.1
 
